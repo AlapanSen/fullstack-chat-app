@@ -31,8 +31,17 @@ app.use("/api/messages", messageRoutes);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  // Serve index.html for any path that doesn't match an API route
+  app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+  });
+  
+  // Route for all other client-side routes to return the index.html file
+  app.use((req, res, next) => {
+    if (!req.path.startsWith('/api')) {
+      return res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    }
+    next();
   });
 }
 
