@@ -49,7 +49,4 @@ The application follows a modern client-server architecture with:
 ## Deployment
 
 Deployed on Render with continuous integration from GitHub repository.
-
 ---
-
-*This project demonstrates proficiency in full-stack JavaScript development, real-time communication protocols, responsive UI design, and cloud service integration.* 
